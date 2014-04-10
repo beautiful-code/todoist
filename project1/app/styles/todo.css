@@ -1,0 +1,11 @@
+.todo-list{
+
+	text-align: left;
+	list-style-type: none
+}
+
+.new-todo{
+
+	padding-right: 0px;
+	float: none;
+}

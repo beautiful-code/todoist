@@ -23,7 +23,7 @@ module Api
 
 			def update
 				@todo = Todo.find params[:id]
-				if @todo.update(todo)
+				if @todo.update_attributes(params[:todo])
 					respond_to do |format|
 						format.json {render json: @todo}
 					end
@@ -31,7 +31,8 @@ module Api
 			end 
 
 			def destroy
-				respond_with Todo.destroy(params[:id])
+				@todo = Todo.find(params[:id])
+				respond_with(@todo.destroy) 
 			end	
 
 

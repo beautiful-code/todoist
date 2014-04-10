@@ -12,6 +12,7 @@ $scope.todos = {
  incomplete: []
 }
 
+
 $scope.getTodos = function(){
 
  $http.get('/api/v1/todos.json')
@@ -21,11 +22,24 @@ $scope.getTodos = function(){
    })
 }
 
-$scope.getTodos();
 
 $scope.updateTodo = function(){
-	alert('clicked id is '+$scope.todo.id);
+   $http.put('/api/v1/todos/'+this.todo.id+'.json', {'completed': this.todo.completed, 'title': this.todo.title}).success(function(){
+   $scope.getTodos();	
+   })
+
+
 }
+
+$scope.deleteTodo = function(){
+
+  $http.delete('/api/v1/todos/'+this.todo.id+'.json')
+    .success(function(){
+       $scope.getTodos()		
+
+    })
+}
+
 
 
 
@@ -35,10 +49,15 @@ $scope.addTodo = function(){
     .success(function(data){
 
     	$scope.todos.incomplete.push(data)
+    	$scope.todo = null
 
     })
 
 }
+
+//Initialization code
+$scope.getTodos();
+
 
   });
 
