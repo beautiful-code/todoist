@@ -1,0 +1,34 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#">Home</a></li>
+
+  </ul>
+  <h3 class="text-muted">project1</h3>
+</div>
+
+<div class="jumbotron" ng-controller='MainCtrl'>
+  <h3 >My Todos !</h3>
+  <form id="todo_form" action='' ng-submit='addTodo()'>
+    <input  type='text' placeholder='Write your shit here bro !' ng-model='todo.title' />
+    <input type='submit' value='Do it yo !' / > 
+  </form>
+
+  <ul id='todo_list'>
+    <h4>Shit to be done !</h4>
+        <li ng-repeat='todo in todos.incomplete'>
+        {{todo.title}}
+    </li> 
+<h4>Completed</h4>
+    <li ng-repeat='todo in todos.completed'>
+        <input type="checkbox" ng-click='updateTodo()'>  {{todo.title}}
+    </li> 
+ 
+ </div>
+
+<div >
+  <div class='button' ng-click='newTodo()'> Click for New Todo </div>
+</div>
+
+<div class="footer">
+  <p>♥ from the BC(not b*** c***) team</p>
+</div>
