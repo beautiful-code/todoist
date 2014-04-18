@@ -10,8 +10,8 @@
         <li ng-repeat='todo in todos.incomplete' ng-controller='TodoItemController' class='todo-list'>
             <input ng-model='todo.completed' type="checkbox" ng-true-value=true ng-change='updateTodo()' />
             <label ng-show='!actions.showEdit'>{{todo.title}}  </label>
-            <a href='#' ng-click='toggleEdit()'>(edit)</a>
-            <a href='#' ng-click='deleteTodo()'>(X)</a>
+            <a href='' ng-click='toggleEdit()'>(edit)</a>
+            <a href='' ng-click='deleteTodo()'>(X)</a>
             <div ng-show='actions.showEdit'>
                 <form  action='' ng-submit='updateTodo()'>
                     <input  type='text'    ng-model='todo.title' class='col-xs-8 new-todo' />
