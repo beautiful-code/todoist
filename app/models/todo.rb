@@ -4,5 +4,7 @@ class Todo < ActiveRecord::Base
   scope :completed, where(completed: true)
   scope :incomplete, where(completed: false)
 
+  belongs_to :user
+
 
 end

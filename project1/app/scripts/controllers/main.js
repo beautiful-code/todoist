@@ -2,62 +2,25 @@
 
 app = angular.module('project1App')
 
-app.controller('MainCtrl', function ($scope,$http) {
-    
+app.controller('MainCtrl', function ($scope,$location,logincheck,$cookieStore) {
 
-$scope.todos = {
- 
- completed: [],
- 
- incomplete: []
-}
+    console.log('logincheck() is '+logincheck());
 
+    $scope.user = {
+        email: $cookieStore.get('email')
+    }
 
-$scope.getTodos = function(){
+    $scope.checklogin = function(){
+        return logincheck();
+    }
 
- $http.get('/api/v1/todos.json')
-   .success(function(data,status,headers,config){
-      $scope.todos = data;
-      window.data = data;
-   })
-}
-
-
-$scope.updateTodo = function(){
-   $http.put('/api/v1/todos/'+this.todo.id+'.json', {'completed': this.todo.completed, 'title': this.todo.title}).success(function(){
-   $scope.getTodos();	
-   })
-
-
-}
-
-$scope.deleteTodo = function(){
-
-  $http.delete('/api/v1/todos/'+this.todo.id+'.json')
-    .success(function(){
-       $scope.getTodos()		
-
+//    Watch for route changes anywhere and redirect to login if not logged in
+    $scope.$watch(function() { return $location.path(); }, function(newValue, oldValue){
+        if (!logincheck()  && newValue != '/signup'){
+            console.log('Going to redirect to login');
+            $location.path('/login');
+        }
     })
-}
-
-
-
-
-$scope.addTodo = function(){
-
-    $http.post('/api/v1/todos.json',{'title': $scope.todo.title})
-    .success(function(data){
-
-    	$scope.todos.incomplete.push(data)
-    	$scope.todo = null
-
-    })
-
-}
-
-//Initialization code
-$scope.getTodos();
-
 
   });
 

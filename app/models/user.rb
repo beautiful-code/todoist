@@ -1,16 +1,27 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :password, :remember_token
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+
   has_many :todos
-  before_save :create_remember_token
 
 
+  # For token_authenticable to work
+  before_save :ensure_authentication_token
 
 
-private
-
-def create_remember_token
-   self.remember_token = SecureRandom.urlsafe_base64 # If u just say remember_token= ...   then local variable
-end	
+  def serializable_hash(options={})
+    options ||= {}
+    methods = []
+    methods << :authentication_token if options[:private]
+    options[:methods] ||=methods
+    super
+  end
 
 
 end

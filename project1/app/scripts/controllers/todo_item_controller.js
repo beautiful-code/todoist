@@ -2,7 +2,7 @@
 
 app = angular.module('project1App')
 
-app.controller('TodoItemController', function ($scope,$http) {
+app.controller('TodoItemController', function ($scope,$http,logincheck,$location) {
 
 
 	$scope.actions = {
@@ -17,16 +17,21 @@ $scope.toggleEdit = function(){
 }
 
 
+/*
+//Kind of like a Rails before_filter :authenticate_user! ....but not a good idea
+// Shuld control authentication at global route level by watching for routeChange
+$scope.auth_user = function(){
+    console.log('Authing user');
+    if (logincheck() == false){
 
+        $location.path('/signup');
 
+    }
+}
 
-
-
-
-
-
-
-
+//Calling it here
+$scope.auth_user();
+*/
 
 
 
