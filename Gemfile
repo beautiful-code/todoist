@@ -25,6 +25,8 @@ gem 'jquery-rails'
 gem 'devise' , '3.0.1'
 #gem 'debugger'
 
+gem 'foreman'
+
 gem 'capistrano', '~> 3.1.0'
 
 # rails specific capistrano funcitons

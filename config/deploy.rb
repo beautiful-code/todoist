@@ -51,7 +51,15 @@ set :unicorn_binary, "bundle exec unicorn"
 set :rvm_type, :user
 set :rvm_ruby_version, 'ruby-2.1.0@todoist --create'
 
-before "bundler:install", "deploy:install_bundler_gem"
+namespace :foreman do
+  task :export do
+    on roles(:all) do
+      within release_path do
+        execute :bundle, "exec rvmsudo foreman export -d #{release_path} -f #{shared_path}/config/Procfile.deployed upstart /etc/init -a #{fetch :application} -u deploy"
+      end
+    end
+  end
+end
 
 
 namespace :deploy do
@@ -65,4 +73,18 @@ namespace :deploy do
     end
   end
 
+  desc 'Create db'
+  task :create_db do
+    on roles(:db) do
+      within release_path do
+        execute :rvm, "#{fetch(:rvm_ruby_version)} do bundle exec rake db:create"
+      end
+    end
+  end
+
 end
+
+before "bundler:install", "deploy:install_bundler_gem"
+before "deploy:compile_assets", "deploy:create_db"
+after "deploy:compile_assets", "foreman:export"
+

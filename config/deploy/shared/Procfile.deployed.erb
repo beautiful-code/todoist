@@ -1,0 +1,13 @@
+<%
+  services = {
+    web:    'bundle exec unicorn -c config/unicorn.rb',
+    #solr:   'bundle exec rake sunspot:solr:run'
+  }
+
+  exported_services = host.roles.to_a.collect { |r|
+    fetch(:services_for_role)[r]
+  }.flatten.uniq.compact
+%>
+<% exported_services.each do |name| %>
+<%= name %>: <%= services[name] %>
+<% end %>
