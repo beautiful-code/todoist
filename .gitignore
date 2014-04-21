@@ -46,3 +46,6 @@ config/secrets.yml
 # vim swap files
 *.swp
 *.swo
+
+# ignoring chef for now.
+chef
