@@ -2,7 +2,7 @@
 
 app = angular.module('project1App')
 
-app.controller('SignupCtrl', function ($scope,$http,$location,$cookieStore) {
+app.controller('SignupCtrl', [ '$scope','$http','$location','$cookieStore' ,function ($scope,$http,$location,$cookieStore) {
 
     $scope.signup = function(){
 
@@ -31,5 +31,5 @@ app.controller('SignupCtrl', function ($scope,$http,$location,$cookieStore) {
 
     }
 
-});
+}]);
 

@@ -2,7 +2,7 @@
 
 app = angular.module('project1App')
 
-app.controller('TodoItemController', function ($scope,$http,logincheck,$location) {
+app.controller('TodoItemController', ['$scope','$http','logincheck','$location', function ($scope,$http,logincheck,$location) {
 
 
 	$scope.actions = {
@@ -35,4 +35,4 @@ $scope.auth_user();
 
 
 
-})
+}]);

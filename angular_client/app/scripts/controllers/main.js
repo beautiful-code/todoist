@@ -2,7 +2,7 @@
 
 app = angular.module('project1App')
 
-app.controller('MainCtrl', function ($scope,$location,logincheck,$cookieStore) {
+app.controller('MainCtrl', ['$scope','$location','logincheck','$cookieStore',function ($scope,$location,logincheck,$cookieStore) {
 
     console.log('logincheck() is '+logincheck());
 
@@ -22,6 +22,4 @@ app.controller('MainCtrl', function ($scope,$location,logincheck,$cookieStore) {
         }
     })
 
-  });
-
-
+  }]);

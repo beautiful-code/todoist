@@ -24,7 +24,14 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: '../public'
+      dist: 'dist'
+    },
+
+    uglify : {
+        options: {
+            report: 'min',
+            mangle: false
+        }
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -57,6 +64,7 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
+
     },
 
     // The actual grunt server settings

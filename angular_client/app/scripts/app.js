@@ -7,7 +7,7 @@ var app = angular.module('project1App', [
     'myLoginCheck'
 ]);
 
-app.config(function($routeProvider){
+app.config(['$routeProvider', function($routeProvider){
 
   $routeProvider
 
@@ -28,9 +28,9 @@ app.config(function($routeProvider){
   .otherwise({redirectTo: '/'});
 
 
-});
+}]);
 
-app.config(function($httpProvider) {
+app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push(function ($q, $rootScope,$cookieStore) {
         return {
             request: function (config) {
@@ -44,5 +44,4 @@ app.config(function($httpProvider) {
         };
     });
 
-});
-
+}]);

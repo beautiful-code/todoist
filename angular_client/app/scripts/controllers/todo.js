@@ -2,7 +2,7 @@
 
 app = angular.module('project1App');
 
-app.controller('TodoCtrl', function ($scope,$http) {
+app.controller('TodoCtrl', ['$scope','$http', function ($scope,$http) {
 
     $scope.todos = {
 
@@ -61,4 +61,4 @@ app.controller('TodoCtrl', function ($scope,$http) {
 //Initialization code
     $scope.getTodos();
 
-});
+}]);

@@ -28,6 +28,8 @@ set :services_for_role, {
 # Default value for :pty is false
 # set :pty, true
 
+set :cdn_prefix, '/'
+
 # Default value for :linked_files is []
 set :linked_files, %w{.env config/database.yml}
 
@@ -69,6 +71,23 @@ namespace :foreman do
     on roles(:all) do
       within release_path do
         execute :bundle, "exec rvmsudo foreman export -d #{release_path} -f #{shared_path}/config/Procfile.deployed upstart /etc/init -a #{fetch :application} -u deploy"
+      end
+    end
+  end
+end
+
+
+namespace :angular do
+  task :copy_site do
+    system("cd angular_client; bower install; cd ..")
+    system("cd angular_client; grunt build --force --cdn-prefix=#{fetch(:cdn_prefix)}; cd ..")
+    system("rm -f angular_public.tar.gz; rm -rf angular_public;")
+    system("cp -r angular_client/dist angular_public")
+    system("tar -cvzf angular_public.tar.gz angular_public")
+    on roles(:app) do
+      within release_path do
+        upload! "angular_public.tar.gz", "#{release_path}/angular_public.tar.gz"
+        execute "cd #{release_path}; tar -xvzf angular_public.tar.gz"
       end
     end
   end
