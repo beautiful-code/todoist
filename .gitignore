@@ -47,5 +47,9 @@ config/secrets.yml
 *.swp
 *.swo
 
-# ignoring chef for now.
-chef
+# ignoring angular_public
+angular_public/
+angular_public.tar.gz
+
+
+

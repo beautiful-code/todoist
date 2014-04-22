@@ -80,7 +80,7 @@ end
 namespace :angular do
   task :copy_site do
     system("cd angular_client; bower install; cd ..")
-    system("cd angular_client; grunt build --force --cdn-prefix=#{fetch(:cdn_prefix)}; cd ..")
+    system("cd angular_client; grunt build --cdn-prefix=#{fetch(:cdn_prefix)}; cd ..")
     system("rm -f angular_public.tar.gz; rm -rf angular_public;")
     system("cp -r angular_client/dist angular_public")
     system("tar -cvzf angular_public.tar.gz angular_public")
@@ -159,6 +159,7 @@ namespace :deploy do
 end
 
 before "bundler:install", "deploy:install_bundler_gem"
+after "bundler:install", "angular:copy_site"
 before "deploy:compile_assets", "deploy:create_db"
 after "deploy:compile_assets", "deploy:setup_config"
 after "deploy:compile_assets", "foreman:export"
