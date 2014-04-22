@@ -7,6 +7,8 @@ gem 'rails', '3.2.14'
 
 gem 'mysql2'
 
+gem 'dotenv'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -27,15 +29,16 @@ gem 'devise' , '3.0.1'
 
 gem 'foreman'
 
-gem 'capistrano', '~> 3.1.0'
-
 # rails specific capistrano funcitons
-gem 'capistrano-rails', '~> 1.1.0'
+group :development do
+  gem 'capistrano-rails'
+end
 
-gem 'capistrano-rvm', github: 'capistrano/rvm'
-
-# integrate bundler with capistrano
-gem 'capistrano-bundler'
+group :deploy do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+end
 
 # Use the Unicorn app server
 gem 'unicorn'

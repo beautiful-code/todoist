@@ -9,7 +9,6 @@ server {
   client_body_buffer_size 128k;
   proxy_busy_buffers_size 64k;
 
-#  server_name .<%= fetch(:base_domain) || 'farmaciasanpablo.com.mx' %>;
   client_max_body_size 100M;
 
   listen  80;

@@ -1,0 +1,8 @@
+development_local:
+  adapter: mysql2
+  encoding: utf8
+  database: todoist_development_local
+  username: root
+  password: ilikerandompasswords
+  host: 127.0.0.1
+  port: 3306
