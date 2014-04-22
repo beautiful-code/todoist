@@ -32,6 +32,8 @@ gem 'capistrano', '~> 3.1.0'
 # rails specific capistrano funcitons
 gem 'capistrano-rails', '~> 1.1.0'
 
+gem 'capistrano-rvm', github: 'capistrano/rvm'
+
 # integrate bundler with capistrano
 gem 'capistrano-bundler'
 
