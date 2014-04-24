@@ -9,17 +9,30 @@ app.controller('MainCtrl', ['$scope','$location','tgSessionsHelper','tgUser','$c
         email: $cookieStore.get('email')
     }
 
+    // Logout has some bugs left
+    $scope.logout = function(){
+        tgSessionsHelper.logout();
+        $location.path('/');
+    }
+
     $scope.tgUser = tgUser;
 
     console.log($scope.tgUser.isAnon());
 
-//    Watch for route changes anywhere and redirect to login if not logged in
     $scope.$watch(function() { return $location.path(); }, function(newValue, oldValue){
-        if (newValue == '/signup' || newValue== '/login'){
-            console.log('Going to redirect to login and log out of existing session');
+        if (newValue== '/login'){
+            console.log('Going to log out of existing session');
             tgSessionsHelper.logout();
             $location.path('/login');
         }
+        if (newValue == '/signup'){
+            console.log('Going to redirect to login and log out of existing session');
+            $location.path('/signup');
+        }
     })
+
+
+
+
 
   }]);

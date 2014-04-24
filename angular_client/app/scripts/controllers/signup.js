@@ -14,9 +14,8 @@ app.controller('SignupCtrl', [ '$scope','$http','$location','$cookieStore' ,func
                 console.log(data.authentication_token);
                 $cookieStore.put('authentication_token',data.authentication_token);
                 $cookieStore.put('email',data.email);
+                $cookieStore.put('anon',false);
                 $location.path('/');
-
-
             })
 
     }
@@ -28,6 +27,7 @@ app.controller('SignupCtrl', [ '$scope','$http','$location','$cookieStore' ,func
                 console.log(data.authentication_token);
                 $cookieStore.put('authentication_token',data.authentication_token);
                 $cookieStore.put('email',data.email);
+                $cookieStore.put('anon',false);
                 $location.path('/');
 
             })
