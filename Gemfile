@@ -32,6 +32,7 @@ gem 'foreman'
 # rails specific capistrano funcitons
 group :development do
   gem 'capistrano-rails'
+  gem 'quiet_assets'
 end
 
 group :deploy do
