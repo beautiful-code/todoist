@@ -30,3 +30,12 @@ production:
   password: ilikerandompasswords
   host: 127.0.0.1
   port: 3306
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: todoist_test
+  username: root
+  password: ilikerandompasswords
+  host: 127.0.0.1
+  port: 3306
