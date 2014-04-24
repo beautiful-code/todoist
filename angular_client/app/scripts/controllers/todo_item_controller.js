@@ -2,7 +2,7 @@
 
 app = angular.module('project1App')
 
-app.controller('TodoItemController', ['$scope','$http','logincheck','$location', function ($scope,$http,logincheck,$location) {
+app.controller('TodoItemController', ['$scope','$http','tgSessionsHelper','$location', function ($scope,$http,tgSessionsHelper,$location) {
 
 
 	$scope.actions = {

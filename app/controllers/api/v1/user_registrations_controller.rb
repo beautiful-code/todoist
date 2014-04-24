@@ -6,7 +6,6 @@ module Api
       respond_to :json
 
       def create
-
         user = User.new(params[:user])
         if user.save
           render :json=> user.as_json(:private=>true), :status=>201

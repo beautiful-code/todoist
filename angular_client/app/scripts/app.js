@@ -3,8 +3,7 @@
 var app = angular.module('project1App', [
     'ngCookies',
     'ngSanitize',
-    'ngRoute',
-    'myLoginCheck'
+    'ngRoute'
 ]);
 
 app.config(['$routeProvider', function($routeProvider){

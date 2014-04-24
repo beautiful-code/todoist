@@ -2,22 +2,22 @@
 
 app = angular.module('project1App')
 
-app.controller('MainCtrl', ['$scope','$location','logincheck','$cookieStore',function ($scope,$location,logincheck,$cookieStore) {
+app.controller('MainCtrl', ['$scope','$location','tgSessionsHelper','tgUser','$cookieStore',function ($scope,$location,tgSessionsHelper,tgUser,$cookieStore) {
 
-    console.log('logincheck() is '+logincheck());
 
     $scope.user = {
         email: $cookieStore.get('email')
     }
 
-    $scope.checklogin = function(){
-        return logincheck();
-    }
+    $scope.tgUser = tgUser;
+
+    console.log($scope.tgUser.isAnon());
 
 //    Watch for route changes anywhere and redirect to login if not logged in
     $scope.$watch(function() { return $location.path(); }, function(newValue, oldValue){
-        if (!logincheck()  && newValue != '/signup'){
-            console.log('Going to redirect to login');
+        if (newValue == '/signup' || newValue== '/login'){
+            console.log('Going to redirect to login and log out of existing session');
+            tgSessionsHelper.logout();
             $location.path('/login');
         }
     })

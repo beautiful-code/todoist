@@ -4,6 +4,9 @@ app = angular.module('project1App')
 
 app.controller('SignupCtrl', [ '$scope','$http','$location','$cookieStore' ,function ($scope,$http,$location,$cookieStore) {
 
+
+
+
     $scope.signup = function(){
 
         $http.post('/api/v1/users',{'user':{'email': $scope.user.email,'password': $scope.user.password,'password_confirmation': $scope.user.password_confirmation}})

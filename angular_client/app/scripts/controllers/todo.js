@@ -2,7 +2,7 @@
 
 app = angular.module('project1App');
 
-app.controller('TodoCtrl', ['$scope','$http', function ($scope,$http) {
+app.controller('TodoCtrl', ['$scope','$http','$cookieStore', function ($scope,$http,$cookieStore) {
 
     $scope.todos = {
 
@@ -18,7 +18,13 @@ app.controller('TodoCtrl', ['$scope','$http', function ($scope,$http) {
             .success(function (data, status, headers, config) {
                 $scope.todos = data;
                 window.data = data;
-            })
+
+               $cookieStore.put('authentication_token',data.user.authentication_token);
+               $cookieStore.put('email',data.user.email);
+               $cookieStore.put('anon',data.user.anonymous);
+
+
+           })
     }
 
 

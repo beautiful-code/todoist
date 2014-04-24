@@ -42,4 +42,4 @@ end
 
 # Use the Unicorn app server
 gem 'unicorn'
-
+gem 'debugger'

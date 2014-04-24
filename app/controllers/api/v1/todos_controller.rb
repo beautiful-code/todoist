@@ -2,12 +2,13 @@ module Api
 	module V1
 		class TodosController < ApplicationController
 			skip_before_filter :verify_authenticity_token
+      before_filter :check_for_first_time
       before_filter :authenticate_user!
 
 			respond_to :json
 
 			def index
-				respond_with({completed: current_user.todos.completed, incomplete: current_user.todos.incomplete})
+				respond_with({completed: current_user.todos.completed, incomplete: current_user.todos.incomplete, user: current_user.as_json(private: true)})
 			end 
 			
 			def show
