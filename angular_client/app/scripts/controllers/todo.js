@@ -1,54 +1,38 @@
 'use strict';
 
-app = angular.module('project1App');
+app = angular.module('todoApp');
 
 app.controller('TodoCtrl', ['$scope','$http','$cookieStore', function ($scope,$http,$cookieStore) {
 
     $scope.todos = {
-
-        completed: [],
-
-        incomplete: []
+      completed: [],
+      incomplete: []
     }
 
 
     $scope.getTodos = function () {
-
-       return $http.get('/api/v1/todos.json')
+        return $http.get('/api/v1/todos.json')
             .success(function (data, status, headers, config) {
-                $scope.todos = data;
-                window.data = data;
+               $scope.todos = data;
 
                $cookieStore.put('authentication_token',data.user.authentication_token);
                $cookieStore.put('email',data.user.email);
                $cookieStore.put('anon',data.user.anonymous);
-
-
-           })
+         })
     }
 
 
     $scope.updateTodo = function () {
+        console.log(this);
         $http.put('/api/v1/todos/' + this.todo.id + '.json', {'completed': this.todo.completed, 'title': this.todo.title}).success(function () {
             $scope.getTodos();
-        }).success(function(data, status, headers, config) {
-
-            $scope.getTodos().success(function(){
-
-//                $scope.toggleEdit();
-            })
         })
-
-
     }
 
     $scope.deleteTodo = function () {
-
-        $http.delete('/api/v1/todos/' + this.todo.id + '.json')
-            .success(function () {
-                $scope.getTodos()
-
-            })
+        $http.delete('/api/v1/todos/' + this.todo.id + '.json').success(function () {
+           $scope.getTodos()
+        })
     }
 
 
@@ -64,7 +48,7 @@ app.controller('TodoCtrl', ['$scope','$http','$cookieStore', function ($scope,$h
 
     }
 
-//Initialization code
+    //Initialization code
     $scope.getTodos();
 
 }]);

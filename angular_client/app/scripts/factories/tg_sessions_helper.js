@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('project1App')
+angular.module('todoApp')
     .factory('tgSessionsHelper', ['$cookieStore', function ($cookieStore) {
         var factory = {}
         factory.logout = function () {
@@ -10,9 +10,4 @@ angular.module('project1App')
         }
         return factory;
 
-    }]).
-    factory('anonCheck', ['$cookieStore', function ($cookieStore) {
-        return function () {
-            return $cookieStore.get('anon')
-        };
     }]);

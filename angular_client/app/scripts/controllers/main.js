@@ -1,10 +1,10 @@
 'use strict';
 
-app = angular.module('project1App')
+app = angular.module('todoApp')
 
 app.controller('MainCtrl', ['$scope','$location','tgSessionsHelper','tgUser','$cookieStore',function ($scope,$location,tgSessionsHelper,tgUser,$cookieStore) {
 
-
+    // TODO: User tgUser
     $scope.user = {
         email: $cookieStore.get('email')
     }
@@ -25,14 +25,6 @@ app.controller('MainCtrl', ['$scope','$location','tgSessionsHelper','tgUser','$c
             tgSessionsHelper.logout();
             $location.path('/login');
         }
-        if (newValue == '/signup'){
-            console.log('Going to redirect to login and log out of existing session');
-            $location.path('/signup');
-        }
     })
-
-
-
-
 
   }]);

@@ -1,11 +1,9 @@
 'use strict';
 
-app = angular.module('project1App')
+app = angular.module('todoApp')
 
+// TODO: Put user specific data in ngUser and not in the cookie store.
 app.controller('SignupCtrl', [ '$scope','$http','$location','$cookieStore' ,function ($scope,$http,$location,$cookieStore) {
-
-
-
 
     $scope.signup = function(){
 
@@ -17,7 +15,6 @@ app.controller('SignupCtrl', [ '$scope','$http','$location','$cookieStore' ,func
                 $cookieStore.put('anon',false);
                 $location.path('/');
             })
-
     }
 
     $scope.login = function(){
@@ -31,7 +28,6 @@ app.controller('SignupCtrl', [ '$scope','$http','$location','$cookieStore' ,func
                 $location.path('/');
 
             })
-
     }
 
 }]);

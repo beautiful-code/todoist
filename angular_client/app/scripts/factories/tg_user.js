@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('project1App')
+angular.module('todoApp')
   .factory('tgUser',['$cookieStore', function ($cookieStore) {
      var factory = {}
      factory.isAnon = function() {
@@ -8,5 +8,5 @@ angular.module('project1App')
      }
      factory.email = $cookieStore.get('email');
 
-        return factory;
+     return factory;
   }]);

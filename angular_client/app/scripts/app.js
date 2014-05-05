@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('project1App', [
+var app = angular.module('todoApp', [
     'ngCookies',
     'ngSanitize',
     'ngRoute'
@@ -9,13 +9,11 @@ var app = angular.module('project1App', [
 app.config(['$routeProvider', function($routeProvider){
 
   $routeProvider
-
   .when('/',{
 
   	templateUrl: 'views/todo_home.html',
   	controller: 'TodoCtrl'
   })
-
   .when('/signup',{
       templateUrl: 'views/signup.html',
       controller: 'SignupCtrl'
@@ -29,16 +27,16 @@ app.config(['$routeProvider', function($routeProvider){
 
 }]);
 
+/* Always send the auth_token if it is present */
 app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push(function ($q, $rootScope,$cookieStore) {
         return {
             request: function (config) {
-
-                    if (config.params==null) {
-                        config.params = {};
-                    }
-                    config.params.authentication_token = $cookieStore.get('authentication_token');
-                return config;
+              if (config.params==null) {
+                  config.params = {};
+              }
+              config.params.authentication_token = $cookieStore.get('authentication_token');
+              return config;
             }
         };
     });
