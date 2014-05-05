@@ -25,7 +25,6 @@ end
 gem 'jquery-rails'
 
 gem 'devise' , '3.0.1'
-#gem 'debugger'
 
 gem 'foreman'
 
@@ -43,4 +42,3 @@ end
 
 # Use the Unicorn app server
 gem 'unicorn'
-gem 'debugger'
