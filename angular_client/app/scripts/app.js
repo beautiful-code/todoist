@@ -27,18 +27,7 @@ app.config(['$routeProvider', function($routeProvider){
 
 }]);
 
-/* Always send the auth_token if it is present */
-app.config(['$httpProvider', function($httpProvider) {
-    $httpProvider.interceptors.push(function ($q, $rootScope,$cookieStore) {
-        return {
-            request: function (config) {
-              if (config.params==null) {
-                  config.params = {};
-              }
-              config.params.authentication_token = $cookieStore.get('authentication_token');
-              return config;
-            }
-        };
-    });
-
-}]);
+app
+  .config(function($httpProvider) {
+    $httpProvider.interceptors.push('requestInterceptor');
+  });

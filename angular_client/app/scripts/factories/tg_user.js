@@ -2,11 +2,19 @@
 
 angular.module('todoApp')
   .factory('tgUser',['$cookieStore', function ($cookieStore) {
-     var factory = {}
-     factory.isAnon = function() {
-         return $cookieStore.get('anon');
-     }
-     factory.email = $cookieStore.get('email');
 
-     return factory;
+     return {
+       isAnon : function() {
+         return $cookieStore.get('anon');
+       },
+
+       email: function() {
+         return $cookieStore.get('email');
+       },
+
+       authentication_token: function() {
+         return $cookieStore.get('authentication_token');
+       }
+     };
+
   }]);
