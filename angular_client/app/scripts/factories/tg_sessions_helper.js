@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('todoApp')
-    .factory('tgSessionsHelper', ['$cookieStore','$location','$http', function ($cookieStore,$http,$location) {
+    .factory('tgSessionsHelper', ['$cookieStore','$http', function ($cookieStore,$http) {
         var factory = {}
         factory.logout = function () {
-            $http.delete('/api/v1/users/sign_out.json').success(function(data){
+            return $http.delete('/api/v1/users/sign_out.json').success(function(data){
                 $cookieStore.put('anon', true);
                 $cookieStore.remove('authentication_token');
                 $cookieStore.remove('email');

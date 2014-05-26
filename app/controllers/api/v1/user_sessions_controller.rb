@@ -22,7 +22,9 @@ module Api
       end
 
       def destroy
-        render json: sign_out(resource_name)
+        sign_out(resource_name)
+        reset_session
+        render nothing: true,status: :ok
       end
 
       protected

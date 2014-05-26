@@ -4,22 +4,10 @@ app = angular.module('todoApp');
 
 app.controller('TodoCtrl', ['$scope','$http','$cookieStore', function ($scope,$http,$cookieStore) {
 
-    $scope.todos = {
-      completed: [],
-      incomplete: []
-    }
 
 
-    $scope.getTodos = function () {
-        return $http.get('/api/v1/todos.json')
-            .success(function (data, status, headers, config) {
-               $scope.todos = data;
 
-               $cookieStore.put('authentication_token',data.user.authentication_token);
-               $cookieStore.put('email',data.user.email);
-               $cookieStore.put('anon',data.user.anonymous);
-         })
-    }
+
 
 
     $scope.updateTodo = function () {
