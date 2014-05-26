@@ -3,7 +3,7 @@ module Api
     class UserSessionsController < Devise::SessionsController
 
       prepend_before_filter :require_no_authentication, :only => [:create ]
-      before_filter :ensure_params_exist
+      before_filter :ensure_params_exist, only: [:create]
 
       respond_to :json
       skip_before_filter :verify_authenticity_token
@@ -22,7 +22,7 @@ module Api
       end
 
       def destroy
-        sign_out(resource_name)
+        render json: sign_out(resource_name)
       end
 
       protected

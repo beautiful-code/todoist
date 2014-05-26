@@ -8,6 +8,7 @@ gem 'rails', '3.2.14'
 gem 'mysql2'
 
 gem 'dotenv'
+gem 'bootstrap-sass'
 
 
 # Gems used only for assets and not required

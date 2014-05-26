@@ -11,8 +11,7 @@ app.controller('MainCtrl', ['$scope','$location','tgSessionsHelper','tgUser','$c
 
     // Logout has some bugs left
     $scope.logout = function(){
-        tgSessionsHelper.logout();
-        $location.path('/');
+        tgSessionsHelper.logout()
     }
 
     $scope.tgUser = tgUser;
