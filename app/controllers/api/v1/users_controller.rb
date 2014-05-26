@@ -15,7 +15,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def check_for_full_user
-    unless current_user.anonymous
+    if (!current_user.anonymous)
       render :json=> current_user.as_json(:private=>true), :status=>201
       return
     end

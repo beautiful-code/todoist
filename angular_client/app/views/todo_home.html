@@ -4,9 +4,9 @@
         <input  type='text' placeholder='Write your shit here bro !' ng-model='todo.title' class='col-xs-8 new-todo' />
         <input type='submit' value='Do it yo !' />
     </form>
-
+    <br />
     <ul id='todo_list'>
-        <h4>Shit to be done !</h4>
+        <h4>TO BE DONE !</h4>
         <li ng-repeat='todo in todos.incomplete' ng-controller='TodoItemController' class='todo-list'>
             <input ng-model='todo.completed' type="checkbox" ng-true-value=true ng-change='updateTodo()' />
             <label ng-show='!actions.showEdit'>{{todo.title}}  </label>
@@ -19,10 +19,13 @@
                 </form>
             </div>
         </li>
-        <h4>Completed</h4>
+        <div ng-if="todos.incomplete.length==0"><i>You're done...for now</i></div>
+        <h4>DONE</h4>
         <li ng-repeat='todo in todos.completed' ng-controller = 'TodoItemController' class='todo-list'>
             <input ng-model='todo.completed' type="checkbox" ng-change='updateTodo()' />  {{todo.title}}
             <a href='#' ng-click='deleteTodo()'>(X)</a>
         </li>
+        <div ng-if="(todos.completed.length==0) && (todos.incomplete.length!=0)"><i>-- Get to work dawg ! --</i></div>
+
     </ul>
 </div>

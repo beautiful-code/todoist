@@ -41,7 +41,6 @@ app.controller('MainCtrl', ['$scope','$location','tgSessionsHelper','tgUser','to
     $scope.$watch(function() { return $location.path(); }, function(newValue, oldValue){
         if (newValue== '/login'){
             console.log('Going to log out of existing session');
-            tgSessionsHelper.logout();
             $location.path('/login');
         }
     })

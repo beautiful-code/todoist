@@ -10,6 +10,7 @@ angular.module('todoApp')
                 $cookieStore.remove('email');
             })
         }
+
         return factory;
     }])
     .factory('anonCheck', ['$cookieStore', function ($cookieStore) {
