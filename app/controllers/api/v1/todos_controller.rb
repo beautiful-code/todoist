@@ -35,8 +35,13 @@ module Api
 
 			def destroy
         @todo = current_user.todos.find params[:id]
-				respond_with(@todo.destroy) 
-			end	
+				respond_with(@todo.archive)
+      end
+
+      def archive_completed
+        Todo.completed.update_all(deleted: true)
+        render nothing: true,status: :ok
+      end
 
 
 		end

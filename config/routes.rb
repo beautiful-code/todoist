@@ -4,7 +4,11 @@ Todoist::Application.routes.draw do
 
   namespace :api do 
     namespace :v1 do 
-      resources :todos
+      resources :todos do
+        collection do
+          put :archive_completed
+        end
+      end
       devise_for :users,:controllers => { :registrations => :'api/v1/users', :sessions=>'api/v1/user_sessions' }
 
     end

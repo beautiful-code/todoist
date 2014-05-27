@@ -36,6 +36,12 @@ app.controller('TodoCtrl', ['$scope','$http','$cookieStore', function ($scope,$h
 
     }
 
+    $scope.clearCompletedTodos = function () {
+        $http.put('/api/v1/todos/archive_completed.json').success(function () {
+            $scope.getTodos()
+        })
+    }
+
     //Initialization code
     $scope.getTodos();
 

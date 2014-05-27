@@ -7,21 +7,23 @@
     <br />
     <ul id='todo_list'>
         <h4>TO BE DONE !</h4>
-        <li ng-repeat='todo in todos.incomplete' ng-controller='TodoItemController' class='todo-list'>
+        <li ng-repeat='todo in todos.incomplete | orderBy:"title"' ng-controller='TodoItemController'
+            class='todo-list'>
             <input ng-model='todo.completed' type="checkbox" ng-true-value=true ng-change='updateTodo()' />
             <label ng-show='!actions.showEdit'>{{todo.title}}  </label>
             <a href='' ng-click='toggleEdit()'>(edit)</a>
             <a href='' ng-click='deleteTodo()'>(X)</a>
             <div ng-show='actions.showEdit'>
                 <form  action='' ng-submit='updateTodo()'>
-                    <input  type='text'    ng-model='todo.title' class='col-xs-8 new-todo' />
+                    <input  type='text'  ng-model='todo.title' class='col-xs-8 new-todo' />
                     <input type='submit' value='Update yo!' />
                 </form>
             </div>
         </li>
         <div ng-if="todos.incomplete.length==0"><i>You're done...for now</i></div>
-        <h4>DONE</h4>
-        <li ng-repeat='todo in todos.completed' ng-controller = 'TodoItemController' class='todo-list'>
+        <h4 style="display: inline-block">DONE &emsp;</h4>
+        <a href='' ng-click='clearCompletedTodos()'><i>(clear)</i></a>
+        <li ng-repeat='todo in todos.completed | orderBy:"title"' ng-controller = 'TodoItemController' class='todo-list'>
             <input ng-model='todo.completed' type="checkbox" ng-change='updateTodo()' />  {{todo.title}}
             <a href='#' ng-click='deleteTodo()'>(X)</a>
         </li>
