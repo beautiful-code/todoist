@@ -32,6 +32,7 @@ gem 'foreman'
 group :development do
   gem 'capistrano-rails'
   gem 'quiet_assets'
+  gem 'mysql2'
 end
 
 group :deploy do
