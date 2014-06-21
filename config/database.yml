@@ -23,7 +23,7 @@ development_local:
   port: 3306
 
 production:
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   database: todoist_production
   username: root
